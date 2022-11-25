@@ -1,0 +1,330 @@
+.sidebarBlock {
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+    border-radius: 2px;
+    margin-bottom: 1.3rem;
+    font-size: 1.16rem;
+    line-height: 1.29;
+    color: #333;
+}
+
+.sidebarBlock.moreBlock {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.sidebarBlock.moreBlock .moreList {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #9aa3ab;
+}
+
+.sidebarBlock.moreBlock .moreList:after {
+    display: table;
+    content: "";
+    clear: both;
+}
+
+.sidebarBlock.moreBlock .moreList .item {
+    float: left;
+}
+
+.sidebarBlock.moreBlock .moreList .item:not(:last-child):after {
+    content: "·";
+    margin: 0 .5rem;
+    color: #c6cfda;
+}
+
+.sidebarBlock li {
+    list-style: none;
+}
+
+/* common */
+.aside {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.indexAside {
+    width: 20rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+.signinTip {
+    padding: 16px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+.indexAside .signin {
+    width: 240px;
+    height: 96px;
+    margin-bottom: 16px;
+}
+.indexAside .firstLine {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+.indexAside .firstLine .iconText {
+    display: flex;
+}
+.indexAside .firstLine .icon {
+    margin-right: 12px;
+    margin-top: 2px;
+}
+svg:not(:root) {
+    overflow: hidden;
+}
+.indexAside .firstLine .title {
+    margin-top: 2px;
+    color: #1d2129;
+    font-size: 18px;
+    font-weight: 500;
+}
+.indexAside .firstLine .signinBtn {
+    border: 1px solid #1e80ff;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.indexAside .firstLine .btn {
+    border-radius: 50px;
+    height: 32px;
+    width: 72px;
+}
+.indexAside .firstLine .btnText {
+    color: #1e80ff;
+    font-size: 14px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+.indexAside .secondLine {
+    margin-bottom: 2px;
+    margin-left: 10px;
+    color: #4e5969;
+    font-size: 12px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+}
+.sidebarBlock {
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+    border-radius: 2px;
+    margin-bottom: 1.3rem;
+    font-size: 1.16rem;
+    line-height: 1.29;
+    color: #333;
+}
+.sidebarBlock.bannerBlock {
+    overflow: hidden;
+}
+.banner {
+    position: relative;
+    font-size: 0;
+    cursor: pointer;
+}
+.sidebarBlock.bannerBlock .banner {
+    height: 90px;
+}
+.banner .banner-image {
+    width: 100%;
+    height: 100%;
+}
+.banner .ctrlBox .closeBtn {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    font-size: 1rem;
+    color: #909090;
+    opacity: .5;
+    display: none;
+}
+.banner .ctrlBox .label {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    line-height: 36px;
+    height: 36px;
+    font-size: 20px;
+    z-index: 1;
+    transform: scale(.5);
+    -webkit-transform: scale(.5);
+    transform-origin: right bottom;
+    -webkit-transform-origin: right bottom;
+    color: #fff;
+    background-color: rgba(0,0,0,.2);
+    border: 1px solid #fff;
+    border-radius: 6px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-weight: 300;
+}
+.banner .ctrlBox .label .inco {
+    display: none;
+}
+.banner .ctrlBox .label span {
+    vertical-align: top;
+}
+.appLink {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+.qrimg {
+    margin-right: 16px;
+    width: 4.167rem;
+    height: 4.167rem;
+}
+.headline {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    color: #1d2129;
+}
+.desc {
+    margin-top: .5rem;
+    font-size: 12px;
+    line-height: 20px;
+    color: #86909c;
+}
+.sidebarBlock .more-block {
+    background-color: transparent;
+    box-shadow: none;
+}
+.sidebarBlock.more-block .moreList {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #9aa3ab;
+}
+.sidebarBlock.more-block .moreList .item {
+    float: left;
+}
+.sidebarBlock.more-block .moreList .item a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #909090;
+}
+.sidebarBlock.more-block .moreList .item:not(:last-child):after {
+    content: "·";
+    margin: 0 .5rem;
+    color: #c6cfda;
+}
+
+.sidebarBlock .accountList {
+    display: flex;
+    justify-content: flex-start;
+    margin: 1rem 0;
+}
+.sidebarBlock .accountList .icon {
+    width: 24px;
+    cursor: pointer;
+}
+.sidebarBlock .accountList .wechat {
+    position: relative;
+}
+.sidebarBlock .accountList .wechat .qrPanel {
+    position: absolute;
+    background: #fff;
+    width: 10rem;
+    top: 100%;
+    left: -100%;
+    z-index: 2;
+    padding: .8rem 0 0;
+    opacity: 0;
+    border: 1px solid #ddd;
+    transform: translate(-24px);
+}
+.sidebarBlock .accountList .wechat .title {
+    text-align: center;
+}
+.sidebarBlock .accountList .wechat .qr {
+    width: 100%;
+}
+
+.sidebarBlock:not(.pure) .blockTitle {
+    padding: 1rem 1.3rem;
+    font-size: 1.16rem;
+    color: #333;
+    border-bottom: 1px solid hsla(0,0%,58.8%,.1);
+}
+.blockBody .entryList .item {
+    display: block;
+    padding: .8rem 1.3rem;
+}
+.blockBody .entryList .item:hover {
+    background: #f8f8f8 !important;
+}
+.blockBody .entryList a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #909090;
+}
+.entryTitle {
+    font-size: 1.16rem;
+    color: #333;
+}
+.entryMetaBox {
+    margin-top: .4rem;
+}
+.entryMeta {
+    display: inline-block;
+    margin-right: 1.5rem;
+    font-size: 1.1rem;
+    color: #c2c2c2;
+}
+.entryMeta .icon {
+    vertical-align: sub;
+}
+.entryMeta .count {
+    color: #b2bac2;
+    margin-left: .4rem;
+}
+
+.sidebarBlock {
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+    border-radius: 2px;
+    margin-bottom: 1.3rem;
+    font-size: 1.16rem;
+    line-height: 1.29;
+    color: #333;
+}
+.sidebarBlock.stickyBlock {
+    position: fixed;
+    background-color: transparent;
+    box-shadow: none;
+    opacity: 0;
+    transition: all .2s;
+    width: 20rem;
+    z-index: -1;
+    top: 67px;
+    pointer-events: none;
+}
+.indexAside.sticky.top .stickyBlock {
+    top: 67px;
+}
+.indexAside.articleSticky.articleTop .stickyBlock {
+    top: 20px;
+}
+.indexAside.sticky .stickyBlock {
+    opacity: 1;
+    top: 127px;
+    z-index: 5;
+    pointer-events: all;
+}
+.indexAside.articleSticky .stickyBlock {
+    opacity: 1;
+    top: 80px;
+    z-index: 5;
+    pointer-events: all;
+}
+
+@media (max-width: 960px) {
+    .indexAside {
+        display: none;
+    }
+}

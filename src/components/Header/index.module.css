@@ -1,0 +1,293 @@
+.mainHeaderBox {
+    position: relative;
+    height: 5rem;
+}
+.mainHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: all .2s;
+    transform: translate3d(0,-100%,0);
+    background: #fff;
+    border-bottom: 1px solid #f1f1f1;
+    color: #909090;
+    height: 5rem;
+    z-index: 250;
+}
+.mainHeader.visible {
+    transform: translateZ(0);
+}
+
+.mainHeader .container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/*logo*/
+.logo {
+    margin-right: 1.7rem;
+}
+.logoImg {
+    display: block;
+    width: 107px;
+    height: 22px;
+}
+.mobile {
+    display: none;
+    width: 31px;
+}
+
+/*导航*/
+.mainNav {
+    height: 100%;
+    flex: 1 0 auto;
+}
+.navList {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    height: 100%;
+    margin: 0;
+}
+.mainNavList {
+    display: flex;
+}
+.phoneHide {
+    display: flex;
+}
+.navItem {
+    color: #86909c;
+    padding: 0 1rem;
+    font-size: 1.167rem;
+    margin: 0;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.navItem.linkItem {
+    padding: 0;
+    height: 5rem;
+}
+.navItem.linkItem a:hover {
+    color: black !important;
+}
+.navItem a {
+    color: #86909c;
+    position: relative;
+}
+.navItem.active>.icon, .navItem.active>a {
+    color: #1e80ff;
+    font-weight: 500;
+}
+.phoneHide .navItem.linkItem a:not(.no-hover) {
+    display: inline-block;
+    height: 5rem;
+    margin: 0 1rem;
+    line-height: 5rem;
+}
+.navItem a {
+    color: #515767;
+    position: relative;
+}
+.navItem>a:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.phoneHide .navItem.linkItem a:not(.no-hover):hover:not(.no-border):before {
+    content: "";
+    position: absolute;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background-color: #1e80ff;
+}
+
+/*搜索*/
+.searchAdd {
+    flex: 1 1 auto;
+    height: 5rem;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1rem;
+}
+.searchAddUl {
+    display: flex;
+    width: 35rem;
+    justify-content: flex-start;
+}
+.navItem.search {
+    cursor: auto;
+}
+.searchForm {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 4px;
+    position: relative;
+    height: 2.834rem;
+    border: 1px solid #c2c8d1;
+    transition: width .2s;
+}
+.searchForm .searchInput {
+    border: none;
+    padding: 0.6rem 0 0.6rem 1rem;
+    box-shadow: none;
+    outline: none;
+    font-size: 1.1rem;
+    color: #96969c;
+    background-color: transparent;
+    transition: width .3s;
+}
+.searchForm.active {
+    border: 1px solid #1e80ff;
+}
+.searchForm .searchInput {
+    border: none;
+    /*width: 11rem;*/
+    width: 26rem;
+    padding: .6rem 0 .6rem 1rem;
+    box-shadow: none;
+    outline: none;
+    font-size: 1.1rem;
+    color: #666;
+    background-color: transparent;
+    transition: width .3s;
+}
+.searchForm .searchInput::-webkit-input-placeholder { /* WebKit browsers */
+    color: #d2d2d2;
+}
+.searchForm .searchInput:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #d2d2d2;
+}
+.searchForm .searchInput::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #d2d2d2;
+}
+.searchForm .searchInput:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #d2d2d2;
+}
+.searchForm .searchInput.active {
+    width: 31rem;
+}
+[type=search] {
+    -webkit-appearance: textfield;
+    outline-offset: -2px;
+}
+.searchIconContainer {
+    position: relative;
+    left: -2px;
+    width: 44px;
+    height: 30px;
+    background: #f2f3f5;
+    border-radius: 2px;
+}
+.searchForm .searchIcon {
+    display: inline-block;
+    width: 1.33rem;
+    padding: 0 0.8333rem 0 0;
+    cursor: pointer;
+    margin: 7px 15px;
+}
+
+@media (max-width: 700px) {
+    .registerBtn {
+        display: none;
+    }
+    .mainHeader .container {
+        width: 96%;
+    }
+    .mainNavList {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: #fff;
+        z-index: 1;
+    }
+    .phoneShowMenu {
+        height: 4.8rem;
+        display: flex;
+        align-items: center;
+        color: #1e80ff;
+        font-size: 1.33rem;
+        justify-content: center;
+        padding: 0;
+        width: 5.66rem;
+    }
+    .phoneShowMenu span {
+        margin-right: .6rem;
+    }
+    .phoneHide {
+        display: none;
+        background-color: #fff;
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+        border: 1px solid rgba(177,180,185,.45);
+        border-radius: 4px;
+        font-size: 1.2rem;
+    }
+    .phoneHide.show {
+        display: block;
+        position: absolute;
+        right: -4rem;
+        padding-bottom: .5rem;
+    }
+    .navItem.linkItem {
+        height: 4rem;
+    }
+    /*logo*/
+    .mobile {
+        display: block;
+    }
+    .logoImg {
+        display: none;
+    }
+    .logo {
+        margin-right: .7rem;
+    }
+
+    /*search*/
+    .searchAddUl {
+        width: auto;
+    }
+    .navItem .searchForm .searchInput {
+        width: 11rem;
+        padding: .6rem;
+    }
+
+}
+
+@media (max-width: 1300px) {
+    .mainHeader .container {
+        width: 96%;
+    }
+}
+
+@media (max-width: 700px) {
+    .searchAdd {
+        margin-right: 0;
+    }
+    .navItem.search {
+        display: flex;
+        padding-right: 1.2rem;
+    }
+    .navItem .searchForm .searchInput {
+        width: 10rem;
+    }
+    .navItem .searchForm .searchIcon {
+        display: none;
+    }
+}
+
