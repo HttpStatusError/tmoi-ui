@@ -2,35 +2,75 @@ import styles from './index.module.css';
 import classnames from "classnames";
 import Sidebar from "../Sidebar";
 import ArticleList from "../../pages/ArticleList";
+import {Routes, Route, Link, NavLink} from 'react-router-dom';
+import ArticleDetail from "../../pages/ArticleDetail";
+import {useEffect, useState} from "react";
+import {getCategoryList} from "../../services/request";
+import PropTypes from "prop-types";
 
-const CategoryNav = () => {
+const CategoryNav = (props) => {
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    getCategoryList()
+      .then(resp => {
+        if (resp.status) {
+          setList(resp.data);
+        }
+      })
+  }, [])
+
   return (
     <nav className={classnames(styles.viewNav, { [styles.top]: false })}>
       <div className={styles.navList}>
-        <a href={'/'} className={classnames(styles.navItem, { [styles.active]: true })}>
-          <div>目录1</div>
-        </a>
-        <a href={'/'} className={classnames(styles.navItem, { [styles.active]: false })}>
-          <div>目录2</div>
-        </a>
+        <NavLink
+          isActive={(match, location) => location.pathname === '/'}
+          to={'/'}
+          className={(option) => classnames(styles.navItem, { [styles.active]: option['isActive'] })}
+        >
+          <div>全部</div>
+        </NavLink>
+        {list.map((item, idx) => (
+          <NavLink
+            key={idx}
+            to={item.path}
+            isActive={(match, location) => location.pathname.indexOf(item.path) !== -1}
+            className={(option) => classnames(styles.navItem, { [styles.active]: option['isActive'] })}
+          >
+            {item.label}
+          </NavLink>
+        ))}
       </div>
     </nav>
   )
 }
 
-const TagNav = () => {
+CategoryNav.propTypes = {
+  setTagList: PropTypes.func
+}
+
+const TagNav = (props) => {
   return (
     <div>
       <ul className={classnames(styles.navList, styles.tagList)}>
-        <li className={classnames(styles.navItem, styles.tag, { [styles.active]: true })}>
-          <a href={'/'}>标签1</a>
-        </li>
-        <li className={classnames(styles.navItem, styles.tag, { [styles.active]: false })}>
-          <a href={'/'}>标签2</a>
-        </li>
+        <Link to={'/后端'}>
+          <li className={classnames(styles.navItem, styles.tag, { [styles.active]: true })}>
+            综合
+          </li>
+        </Link>
+        <Link  to={'/后端/java'}>
+          <li className={classnames(styles.navItem, styles.tag, { [styles.active]: false })}>
+            java
+          </li>
+        </Link>
+
       </ul>
     </div>
   )
+}
+
+TagNav.propTypes = {
+  data: PropTypes.array
 }
 
 const FilterNav = () => {
@@ -48,15 +88,17 @@ const FilterNav = () => {
   )
 }
 
-const Container = () => {
+const Container = (props) => {
+  const [tagList, setTagList] = useState([]);
+
   return (
     <main className={classnames(styles.mainContainer, styles.withViewNav)}>
       <div className={classnames(styles.view, styles.timelineIndexView)}>
         {/* 类目组件 */}
-        <CategoryNav/>
+        <CategoryNav setTagList={(list) => setTagList(list)} />
         <div className={styles.timelineContainer}>
           {/* 标签组件 */}
-          <TagNav/>
+          <TagNav data={tagList}/>
         </div>
         <div className={styles.timelineContent}>
           <div className={styles.timelineEntryList}>
@@ -65,7 +107,14 @@ const Container = () => {
                 {/* 排序组件 */}
                 <FilterNav/>
               </header>
-              <ArticleList/>
+              <Routes>
+                <Route path={'/'} element={<ArticleList/>}/>
+                <Route path=":category">
+                  <Route path=":tag" element={<ArticleList />} />
+                  <Route path="" element={<ArticleList />} />
+                </Route>
+                <Route path={'/post/:id'} element={<ArticleDetail/>} />
+              </Routes>
             </div>
             {/* 侧边栏 */}
             <Sidebar/>

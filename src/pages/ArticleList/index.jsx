@@ -2,6 +2,7 @@ import styles from './index.module.css';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import {Skeleton} from "antd";
+import {useLocation, useParams} from "react-router-dom";
 
 const Loading = () => {
   return (
@@ -79,6 +80,10 @@ const ArticleCard = (props) => {
 }
 
 const ArticleList = () => {
+  let params = useParams();
+  const location = useLocation()
+  console.log(location)
+  console.log(params)
   return (
     <div>
       <ArticleCard loading={true}/>
