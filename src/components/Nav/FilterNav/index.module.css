@@ -1,0 +1,34 @@
+/* 排序目录 */
+.listNav {
+    justify-content: flex-start!important;
+}
+.listNav, .listHeader .navList {
+    display: flex;
+    justify-content: space-between;
+}
+ .navList {
+    align-items: center;
+    line-height: 1;
+}
+.listNav, .navList {
+    display: flex;
+    justify-content: space-between;
+}
+.listNav .navList.left .navItem {
+    font-size: 1.17rem;
+}
+.left .navItem {
+    padding: 0 1.2rem;
+    font-size: 1.16rem;
+    border-right: 1px solid hsla(0,0%,59.2%,.2);
+}
+.navItem {
+    position: relative;
+    cursor: pointer;
+}
+.navList .navItem.active a, .navList .navItem a:hover {
+    color: #007fff;
+}
+.left .navItem:last-child {
+    border: none;
+}

@@ -14,61 +14,9 @@
     margin-top: 5.17rem;
 }
 
-/* 目录导航 */
-.viewNav {
-    position: fixed;
-    top: 5rem;
-    width: 100%;
-    height: 3.833rem;
-    z-index: 100;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
-    transition: all .2s;
-    transform: translateZ(0);
-}
-.viewNav:before {
-    content: "";
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    height: 200%;
-    z-index: -1;
-}
-.viewNav, .viewNav:before {
-    left: 0;
-    background-color: #fff;
-}
-.navItem {
-    position: relative;
-    cursor: pointer;
-}
-.viewNav .navList {
-    max-width: 960px;
-    height: 100%;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    line-height: 1;
-}
-.viewNav .navList .navItem {
-    height: 100%;
-    align-items: center;
-    display: flex;
-    flex-shrink: 0;
-    font-size: 1.16rem;
-    color: #71777c;
-    padding: 0 1rem;
-}
-.viewNav .navList .navItem.active, .viewNav .navList .navItem:hover {
-    color: #007fff;
-}
-.navList {
-    position: relative;
-}
-.viewNav .navList .navItem:first-child {
-    padding: 0 1rem 0 0;
-}
-.viewNav.top {
-    transform: translate3d(0,-5rem,0);
+.listHeader {
+    padding: 1.3rem 1rem;
+    border-bottom: 1px solid hsla(0,0%,59.2%,.1);
 }
 
 /* 中间 */
@@ -88,78 +36,8 @@
     background-color: #fff;
 }
 
-/* 标签目录 */
-.tagList {
-    display: flex;
-    flex-wrap: wrap;
-    height: auto;
-}
-.navList .navItem.tag {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 2rem;
-    background-color: #fff;
-    border-radius: 1rem;
-    font-size: 1.1rem;
-    color: #8a9aa9;
-    padding: 0 .83rem;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
-}
-.navItem.tag.active {
-    background-color: #007fff;
-    color: #fff !important;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%), 0 1px 2px 0 rgb(0 0 0 / 5%);
-}
-.navItem.tag.active>a {
-    color: #fff;
-}
 
-@media (max-width: 960px) {
-    .tagList {
-        padding-left: 2rem;
-    }
-}
 
-/* 排序目录 */
-.listHeader {
-    padding: 1.3rem 1rem;
-    border-bottom: 1px solid hsla(0,0%,59.2%,.1);
-}
-.listNav {
-    justify-content: flex-start!important;
-}
-.listHeader .listNav, .listHeader .navList {
-    display: flex;
-    justify-content: space-between;
-}
-.listHeader .navList {
-    align-items: center;
-    line-height: 1;
-}
-.listHeader .listNav, .listHeader .navList {
-    display: flex;
-    justify-content: space-between;
-}
-.list-nav .navList.left .navItem {
-    font-size: 1.17rem;
-}
-.listHeader .left .navItem {
-    padding: 0 1.2rem;
-    font-size: 1.16rem;
-    border-right: 1px solid hsla(0,0%,59.2%,.2);
-}
-.navItem {
-    position: relative;
-    cursor: pointer;
-}
-.listHeader .navList .navItem.active a, .listHeader .navList .navItem a:hover {
-    color: #007fff;
-}
-.listHeader .left .navItem:last-child {
-    border: none;
-}
 @media (max-width: 960px) {
     .tagList {
         padding-left: 2rem;

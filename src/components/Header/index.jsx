@@ -30,7 +30,7 @@ const Nav = () => {
               <a href={'/'}>首页</a>
             </li>
             <li className={classnames(styles.navItem, styles.linkItem, { [styles.active]: false })}>
-              <a href={'/'}>副页</a>
+              <a href={'/'}>在线代码</a>
             </li>
           </ul>
         </li>

@@ -2,7 +2,7 @@ import styles from './index.module.css';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import {Skeleton} from "antd";
-import {useLocation, useParams} from "react-router-dom";
+import {useEffect} from "react";
 
 const Loading = () => {
   return (
@@ -24,11 +24,11 @@ const ArticleCard = (props) => {
       <div className={styles.entry}>
         {props.loading ?
           <Loading /> :
-          <a href={'/'} className={styles.entryLink}>
+          <div className={styles.entryLink}>
             <div className={classnames(styles.contentBox, styles.articleContentBox)}>
               <div className={styles.metaContainer}>
                 <div className={styles.userMessage}>
-                  <a href={'/'} className={styles.userbox}>
+                  <a href={'/'}>
                     <div className={styles.userPopoverBox}>用户名</div>
                   </a>
                 </div>
@@ -73,22 +73,8 @@ const ArticleCard = (props) => {
                 {props.renderImage && <img alt={'zqskate'} src={image} className={classnames(styles.lazy, styles.thumb)}/>}
               </div>
             </div>
-          </a>}
+          </div>}
       </div>
-    </div>
-  )
-}
-
-const ArticleList = () => {
-  let params = useParams();
-  const location = useLocation()
-  console.log(location)
-  console.log(params)
-  return (
-    <div>
-      <ArticleCard loading={true}/>
-      <ArticleCard/>
-      <ArticleCard renderImage={true}/>
     </div>
   )
 }
@@ -100,6 +86,26 @@ ArticleCard.propTypes = {
 ArticleCard.defaultProps = {
   renderImage: false,
   loading: false
+}
+
+const ArticleList = (props) => {
+
+  useEffect(() => {
+    console.log(1111111)
+    // todo something...
+  }, [props.payload])
+
+  return (
+    <div>
+      <ArticleCard loading={true}/>
+      <ArticleCard/>
+      <ArticleCard renderImage={true}/>
+    </div>
+  )
+}
+
+ArticleList.propTypes = {
+  payload: PropTypes.object
 }
 
 

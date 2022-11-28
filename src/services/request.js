@@ -4,6 +4,10 @@ export function login(params) {
     return axios.post('/api/login', params)
 }
 
-export const getCategoryList = async () => {
+export const getCategoryList = () => {
     return axios.get('/category/list');
+}
+
+export const getTagListByCategoryId = (categoryId) => {
+  return axios.get(`/category/${categoryId}/tag-list`)
 }

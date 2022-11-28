@@ -1,0 +1,33 @@
+/* 标签目录 */
+.tagList {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+}
+.navList .navItem.tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    background-color: #fff;
+    border-radius: 1rem;
+    font-size: 1.1rem;
+    color: #8a9aa9;
+    padding: 0 .83rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+.navItem.tag.active {
+    background-color: #007fff;
+    color: #fff !important;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%), 0 1px 2px 0 rgb(0 0 0 / 5%);
+}
+.navItem.tag.active>a {
+    color: #fff;
+}
+
+@media (max-width: 960px) {
+    .tagList {
+        padding-left: 2rem;
+    }
+}
