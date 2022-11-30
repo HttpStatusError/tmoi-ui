@@ -11,3 +11,7 @@ export const getCategoryList = () => {
 export const getTagListByCategoryId = (categoryId) => {
   return axios.get(`/category/${categoryId}/tag-list`)
 }
+
+export const getArticleList = (payload) => {
+  return axios.post(`/article/filter`, payload)
+}

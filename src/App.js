@@ -2,7 +2,6 @@ import './App.css';
 import Header from "./components/Header";
 import Container from "./components/Container";
 import {Route, Routes} from "react-router-dom";
-import ArticleList from "./pages/ArticleList";
 import ArticleDetail from "./pages/ArticleDetail";
 
 const App = () => {
