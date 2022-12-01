@@ -1,21 +1,26 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-  reduxVal: 'Hello World!'
+  hiddenHeader: false,
+  stickySidebar: false,
 }
 
 const commonSlice = createSlice({
   name: 'common',
   initialState,
   reducers: {
-    changeReduxVal: (state, action) => {
-      state.reduxVal = action.payload
+    changeHiddenHeader: (state, action) => {
+      state.hiddenHeader = action.payload
+    },
+    changeStickySidebar: (state, action) => {
+      state.stickySidebar = action.payload
     }
   }
 })
 
 export const {
-  changeReduxVal
+  changeHiddenHeader,
+  changeStickySidebar
 } = commonSlice.actions
 
 export default commonSlice.reducer

@@ -17,7 +17,6 @@ const Container = () => {
   const [categoryList, setCategoryList] = useState([])
   const [selectedCategory, setSelectedCategory] = useState({});
   const [tagList, setTagList] = useState([]);
-  const [setSelectedTag] = useState({});
 
   useEffect(() => {
     getCategoryList()
@@ -26,7 +25,7 @@ const Container = () => {
           setCategoryList(resp.data);
         }
       })
-  }, [])
+  }, [categoryList.length])
 
   useEffect(() => {
     // 根据pathname查找目录对象，再将对象设置为选中
@@ -84,8 +83,7 @@ const Container = () => {
         <CategoryNav data={categoryList} selected={(category) => setSelectedCategory(category)} />
         <div className={styles.timelineContainer}>
           {/* 标签组件 */}
-          {tagList.length > 0 &&
-            <TagNav categoryPath={selectedCategory?.path} data={tagList} selected={(tag) => setSelectedTag(tag)}/>}
+          {tagList.length > 0 && <TagNav categoryPath={selectedCategory?.path} data={tagList}/>}
         </div>
         <div className={styles.timelineContent}>
           <div className={styles.timelineEntryList}>

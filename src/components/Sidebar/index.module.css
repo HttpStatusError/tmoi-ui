@@ -59,16 +59,17 @@
 }
 .indexAside .signin {
     width: 240px;
-    height: 96px;
     margin-bottom: 16px;
 }
 .indexAside .firstLine {
     display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
-    margin-bottom: 18px;
 }
 .indexAside .firstLine .iconText {
     display: flex;
+    flex-direction: column;
 }
 .indexAside .firstLine .icon {
     margin-right: 12px;
@@ -78,10 +79,10 @@ svg:not(:root) {
     overflow: hidden;
 }
 .indexAside .firstLine .title {
-    margin-top: 2px;
     color: #1d2129;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
 }
 .indexAside .firstLine .signinBtn {
     border: 1px solid #1e80ff;
@@ -91,9 +92,16 @@ svg:not(:root) {
     align-items: center;
 }
 .indexAside .firstLine .btn {
-    border-radius: 50px;
-    height: 32px;
-    width: 72px;
+    border-radius: 4px;
+    height: 36px;
+    width: 74px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(30,128,255,.3);
+    background-color: rgba(30,128,255,.05);
 }
 .indexAside .firstLine .btnText {
     color: #1e80ff;
@@ -102,13 +110,10 @@ svg:not(:root) {
     white-space: nowrap;
 }
 .indexAside .secondLine {
-    margin-bottom: 2px;
-    margin-left: 10px;
-    color: #4e5969;
+    color: #8a919f;
     font-size: 12px;
     font-weight: 400;
-    display: flex;
-    align-items: center;
+    line-height: 24px;
 }
 .sidebarBlock {
     background-color: #fff;

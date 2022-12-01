@@ -16,7 +16,6 @@ const TagNav = (props) => {
             styles.tag,
             { [styles.active]: location.pathname === props.categoryPath }
           )}
-          onClick={() => props.selected()}
         >
           全部
         </NavLink>
@@ -29,7 +28,6 @@ const TagNav = (props) => {
               styles.tag,
               { [styles.active]: decodeURIComponent(location.pathname).indexOf(item.label) !== -1 }
             )}
-            onClick={() => props.selected(item)}
           >
             {item.label}
           </NavLink>

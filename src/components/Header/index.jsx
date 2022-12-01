@@ -1,6 +1,9 @@
 import styles from './index.module.css';
 import classnames from 'classnames';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import {NavLink, useLocation} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {changeHiddenHeader, changeStickySidebar} from "../../redux/commonSlice";
 
 const Logo = () => {
   return (
@@ -18,6 +21,7 @@ const Logo = () => {
 }
 
 const Nav = () => {
+  const location = useLocation();
   const [searchInputClick, setSearchInputClick] = useState(false);
 
   return (
@@ -26,11 +30,11 @@ const Nav = () => {
         {/* 导航栏 */}
         <li className={styles.mainNavList}>
           <ul className={styles.phoneHide}>
-            <li className={classnames(styles.navItem, styles.linkItem, { [styles.active]: true })}>
-              <a href={'/'}>首页</a>
+            <li className={classnames(styles.navItem, styles.linkItem, { [styles.active]: location.pathname === '/' })}>
+              <NavLink to={'/'}>首页</NavLink>
             </li>
-            <li className={classnames(styles.navItem, styles.linkItem, { [styles.active]: false })}>
-              <a href={'/'}>在线代码</a>
+            <li className={classnames(styles.navItem, styles.linkItem, { [styles.active]: location.pathname === '/code' })}>
+              <NavLink to={'/code'}>在线代码</NavLink>
             </li>
           </ul>
         </li>
@@ -63,9 +67,39 @@ const Nav = () => {
 }
 
 const Header = () => {
+  const { hiddenHeader } = useSelector(state => state.commonSlice);
+  const dispatch = useDispatch();
+  const [val, setVal] = useState(0);
+
+  useEffect(() => {
+    function hiddenOrDisplayCategory() {
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      let scroll = scrollTop - val;
+      setVal(() => scrollTop)
+      if (scrollTop > 1100) {
+        dispatch(changeStickySidebar(true))
+      } else {
+        dispatch(changeStickySidebar(false))
+      }
+      if (scrollTop < 100) {
+        dispatch(changeHiddenHeader(false))
+        return
+      }
+      if(scroll > 15) {
+        dispatch(changeHiddenHeader(true))
+      } else if (scroll < -15) {
+        dispatch(changeHiddenHeader(false))
+      }
+    }
+    window.addEventListener('scroll', hiddenOrDisplayCategory);
+    return () => {
+      window.removeEventListener('scroll', hiddenOrDisplayCategory);
+    }
+  }, [dispatch, val])
+
   return (
     <div className={styles.mainHeaderBox}>
-      <header className={classnames(styles.mainHeader, styles.visible)}>
+      <header className={classnames(styles.mainHeader, { [styles.visible]: !hiddenHeader })}>
         <div className={styles.container}>
           <Logo/>
           <Nav/>

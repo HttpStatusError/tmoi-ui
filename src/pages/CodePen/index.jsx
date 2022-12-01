@@ -1,21 +1,18 @@
 import MonacoEditor from  'react-monaco-editor';
-import {useRef, useState} from "react";
+import {useRef} from "react";
 
 const CodePen = () => {
   const editorRef = useRef();
-  const [editorValue, setEditorValue] = useState('');
 
   return (
-    <>
+    <div style={{ marginTop: '1.37rem' }}>
       <MonacoEditor
         height={500}
         language={'javascript'}
         theme={'vs-dark'}
-        value={editorValue}
-        onChange={setEditorValue}
         ref={editorRef}
       />
-    </>
+    </div>
   )
 }
 

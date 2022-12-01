@@ -1,4 +1,8 @@
 /* 标签目录 */
+.mainTagList {
+    transition: all .2s;
+    transform: translate3d(0,-100%,0);
+}
 .tagList {
     display: flex;
     flex-wrap: wrap;
@@ -24,6 +28,9 @@
 }
 .navItem.tag.active>a {
     color: #fff;
+}
+.visible {
+    transform: translateZ(0);
 }
 
 @media (max-width: 960px) {

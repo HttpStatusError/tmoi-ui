@@ -10,11 +10,13 @@ const App = () => {
     <div className={'container'}>
       <Header/>
       <Routes>
-        <Route path={'/'} element={<Container/>}/>
-        <Route path=":category">
-          <Route path=":tag" element={<Container />} />
-          <Route path="" element={<Container />} />
+        <Route path={'/'} element={<Container />}>
+          <Route path=":category">
+            <Route path=":tag" element={<Container />} />
+            <Route path="" element={<Container />} />
+          </Route>
         </Route>
+
         <Route path={'/post/:id'} element={<ArticleDetail/>} />
         <Route path={'/code'} element={<CodePen />} />
       </Routes>

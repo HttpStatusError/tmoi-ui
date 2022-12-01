@@ -2,12 +2,14 @@ import classnames from "classnames";
 import styles from "./index.module.css";
 import {NavLink, useLocation} from "react-router-dom";
 import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
 const CategoryNav = (props) => {
+  const {hiddenHeader} = useSelector(state => state.commonSlice)
   const location = useLocation();
 
   return (
-    <nav className={classnames(styles.viewNav, { [styles.top]: false })}>
+    <nav className={classnames(styles.viewNav, { [styles.top]: hiddenHeader })}>
       <div className={styles.navList}>
         <NavLink
           to={'/'}
