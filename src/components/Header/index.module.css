@@ -26,6 +26,22 @@
     max-width: 1200px;
     margin: auto;
 }
+.tablead {
+    position: absolute;
+    top: 5px;
+    left: 25px;
+    z-index: 9;
+    white-space: nowrap;
+    padding: 2px 7px;
+    background-color: #ee502f;
+    border-radius: 50px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    transform: scale(.5);
+    line-height: 18px;
+    color: #fff;
+}
 
 /*logo*/
 .logo {
@@ -33,7 +49,7 @@
 }
 .logoImg {
     display: block;
-    width: 107px;
+    width: 126px;
     height: 22px;
 }
 .mobile {
@@ -115,21 +131,41 @@
     background-color: #1e80ff;
 }
 
+.rightSideNav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    height: 100%;
+    margin: 0;
+    order: 0;
+}
+
 /*搜索*/
 .searchAdd {
     flex: 1 1 auto;
     height: 5rem;
     display: flex;
     justify-content: flex-end;
-    margin-right: 1rem;
+}
+@media screen and (min-width: 1351px) {
+    .searchAddUl {
+        width: 42.833rem;
+    }
+}
+@media (max-width: 799px) {
+    .searchAdd {
+        justify-content: flex-start;
+        margin-left: 1rem;
+    }
 }
 .searchAddUl {
     display: flex;
-    width: 35rem;
     justify-content: flex-start;
 }
 .navItem.search {
     cursor: auto;
+    padding-left: 0;
 }
 .searchForm {
     background-color: #fff;
@@ -142,31 +178,31 @@
     border: 1px solid #c2c8d1;
     transition: width .2s;
 }
+@media screen and (min-width: 1351px) {
+    .searchForm {
+        width: 360px;
+    }
+}
+@media (max-width: 799px) {
+    .searchForm {
+        width: 200px;
+    }
+}
 .searchForm .searchInput {
     border: none;
+    width: calc(100% - 44px);
     padding: 0.6rem 0 0.6rem 1rem;
     box-shadow: none;
     outline: none;
     font-size: 1.1rem;
-    color: #96969c;
+    color: #8a919f;
     background-color: transparent;
     transition: width .3s;
 }
 .searchForm.active {
     border: 1px solid #1e80ff;
 }
-.searchForm .searchInput {
-    border: none;
-    /*width: 11rem;*/
-    width: 26rem;
-    padding: .6rem 0 .6rem 1rem;
-    box-shadow: none;
-    outline: none;
-    font-size: 1.1rem;
-    color: #666;
-    background-color: transparent;
-    transition: width .3s;
-}
+
 .searchForm .searchInput::-webkit-input-placeholder { /* WebKit browsers */
     color: #d2d2d2;
 }
@@ -201,93 +237,68 @@
     cursor: pointer;
     margin: 7px 15px;
 }
-
-@media (max-width: 700px) {
-    .registerBtn {
-        display: none;
-    }
-    .mainHeader .container {
-        width: 96%;
-    }
-    .mainNavList {
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        background-color: #fff;
-        z-index: 1;
-    }
-    .phoneShowMenu {
-        height: 4.8rem;
-        display: flex;
-        align-items: center;
-        color: #1e80ff;
-        font-size: 1.33rem;
-        justify-content: center;
-        padding: 0;
-        width: 5.66rem;
-    }
-    .phoneShowMenu span {
-        margin-right: .6rem;
-    }
-    .phoneHide {
-        display: none;
-        background-color: #fff;
-        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
-        border: 1px solid rgba(177,180,185,.45);
-        border-radius: 4px;
-        font-size: 1.2rem;
-    }
-    .phoneHide.show {
-        display: block;
-        position: absolute;
-        right: -4rem;
-        padding-bottom: .5rem;
-    }
-    .navItem.linkItem {
-        height: 4rem;
-    }
-    /*logo*/
-    .mobile {
-        display: block;
-    }
-    .logoImg {
-        display: none;
-    }
-    .logo {
-        margin-right: .7rem;
-    }
-
-    /*search*/
-    .searchAddUl {
-        width: auto;
-    }
-    .navItem .searchForm .searchInput {
-        width: 11rem;
-        padding: .6rem;
-    }
-
+.creatorItem.hide {
+    overflow: hidden !important;
 }
-
-@media (max-width: 1300px) {
-    .mainHeader .container {
-        width: 96%;
-    }
+.navItem.add {
+    cursor: default;
+    width: 25rem;
+    transition: width .3s;
+    overflow: hidden;
+    padding-left: 0;
+    padding-right: 0;
 }
-
-@media (max-width: 700px) {
-    .searchAdd {
-        margin-right: 0;
-    }
-    .navItem.search {
-        display: flex;
-        padding-right: 1.2rem;
-    }
-    .navItem .searchForm .searchInput {
-        width: 10rem;
-    }
-    .navItem .searchForm .searchIcon {
+.navItem.add.creatorItem {
+    overflow: visible;
+    width: 11rem;
+    padding-left: 5px;
+}
+@media (max-width: 799px) {
+    .navItem.add {
         display: none;
     }
 }
-
+.addGroup {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    width: 115px;
+    height: 3rem;
+}
+.addBtn {
+    width: 100%;
+    height: 3rem;
+    padding: 0 1rem;
+    font-size: 1.167rem;
+    transition: background-color .1s linear .05s;
+    border-radius: 3px;
+}
+.auth {
+    color: #007fff;
+    padding: 0 0 0 0.833rem;
+}
+.login-button-wrap {
+    position: relative;
+}
+.loginButton {background: rgba(30,128,255,.05);
+    border-radius: 4px;
+    padding: 0.3rem 1rem;
+    color: #007fff;
+    line-height: 1.9rem;
+    font-size: 14px;
+    font-weight: 400;
+    margin-right: 2rem;
+    height: 3rem;
+    overflow: hidden;
+}
+.loginButtonInner, .loginButtonLine {
+    display: inline-block;
+}
+.loginButtonLine {
+    vertical-align: middle;
+    margin: 0 6px;
+    background-color: #abcdff;
+    height: 12px;
+    width: 1px;
+}

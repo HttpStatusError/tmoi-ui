@@ -1,9 +1,5 @@
 import axios from "./axios";
 
-export function login(params) {
-    return axios.post('/api/login', params)
-}
-
 export const getCategoryList = () => {
     return axios.get('/category/list');
 }
@@ -14,4 +10,8 @@ export const getTagListByCategoryId = (categoryId) => {
 
 export const getArticleList = (payload) => {
   return axios.post(`/article/filter`, payload)
+}
+
+export const getArticleHottest = () => {
+  return axios.get(`/article/hottest`)
 }

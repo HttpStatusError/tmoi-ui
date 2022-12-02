@@ -1,10 +1,36 @@
 import styles from './index.module.css';
 import classnames from "classnames";
-import {Button} from "antd";
+import {Button, Spin} from "antd";
 import {useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import {getArticleHottest} from "../../services/request";
+import PropTypes from "prop-types";
+import {LoadingOutlined} from "@ant-design/icons";
 
 const Sidebar = () => {
   const { hiddenHeader, stickySidebar } = useSelector(state => state.commonSlice)
+  const [data, setData] = useState([]);
+  const [hottestLoading, setHottestLoading] = useState(false)
+  const [hottestClosed, setHottestClosed] = useState(false)
+
+  useEffect(() => {
+    setHottestLoading(true)
+    getArticleHottest()
+      .then(resp => {
+        if (resp.status) {
+          setHottestLoading(false)
+          setData(resp.data);
+        } else {
+          setHottestLoading(false)
+          setHottestClosed(true)
+        }
+      })
+      .catch(() => {
+        setHottestClosed(true)
+        setHottestLoading(false)
+      })
+  }, [])
+
   return (
     <aside
       className={classnames(styles.indexAside, styles.aside,
@@ -16,15 +42,54 @@ const Sidebar = () => {
     }>
       <Signin/>
       <Banner/>
+      {!hottestClosed && <Hottest data={data} loading={hottestLoading}/>}
       <Footer/>
 
       <div className={classnames(styles.sidebarBlock, styles.stickyBlock)}>
-        <Signin/>
         <Banner/>
+        {!hottestClosed && <Hottest data={data} loading={hottestLoading}/>}
         <Footer/>
       </div>
     </aside>
   )
+}
+
+const Hottest = (props) => {
+
+  return (
+    <>
+      <div className={classnames(styles.sidebarBlock, styles.shadow)}>
+        <div className={classnames(styles.blockTitle)}>热门文章</div>
+        <Spin indicator={<LoadingOutlined spin={true} />} spinning={props.loading}>
+          <div className={styles.blockBody} style={{minHeight: 200}}>
+            <div className={classnames(styles.entryList)}>
+              {props.data.map((item, idx) => (
+                <a key={idx} href={`/post/${item.id}`} target={"_blank"} rel={"noreferrer"} title={item.title} className={styles.item}>
+                  <div className={styles.entryTitle}>{item.title}</div>
+                  <div className={styles.entryMetaBox}>
+                    <div className={styles.entryMeta}>
+                      <img
+                        src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/e9d76988a7ae3392dc967cfbb64cd887.svg"
+                        className={styles.icon}
+                        alt={'zqskate'}
+                      />
+                      <span className={styles.count}>{item.pageviews}</span>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </Spin>
+
+      </div>
+    </>
+  )
+}
+
+Hottest.propTypes = {
+  data: PropTypes.array,
+  loading: PropTypes.bool
 }
 
 const Signin = () => {
@@ -94,7 +159,7 @@ const Banner = () => {
       </div>
       <div className={classnames(styles.sidebarBlock, styles.bannerBlock)}>
         <div className={styles.banner} style={{...style, height: 120, backgroundImage: `url('https://oss.zqskate.com/blog_v2_banner3.png')`}}>
-          <a href="https://www.quxuetrip.com" target="_blank">
+          <a href="https://www.quxuetrip.com" target="_blank" rel="noreferrer">
             <div className={styles.ctrlBox}>
               <span className={styles.label}>
                 <span>广告</span>
