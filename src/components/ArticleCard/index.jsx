@@ -46,7 +46,7 @@ const ArticleCard = (props) => {
                 </div>
               </div>
               <div className={styles.contentWrapper}>
-                <div className={styles.contentMain}>
+                <div className={styles.contentMain} style={{ overflow: '-webkit-paged-x' }}>
                   <div className={styles.titleRow}>
                     <a href={'/'} className={styles.title}  target="_blank" rel="noreferrer">
                       <div className={styles.textHighlight} dangerouslySetInnerHTML={{ __html: `<div>${props.data.title}</div>` }} />

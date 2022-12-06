@@ -94,6 +94,7 @@
 }
 .contentWrapper .contentMain {
     flex: 1 1 auto;
+    word-break: break-all;
 }
 .titleRow {
     display: flex;
