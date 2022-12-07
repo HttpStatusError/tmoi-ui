@@ -51,7 +51,10 @@ const Container = () => {
   useEffect(() => {
     setData([])
     setHasMore(true)
-    getArticleList({ cursor: 1 })
+    const sort = search.get('sort');
+    const category = params['category'];
+    const tag = params['tag'];
+    getArticleList({ cursor: 1, category, tag, sort })
       .then(resp => {
         if (resp.status) {
           setData(resp.data.data);
