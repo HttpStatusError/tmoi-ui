@@ -26,6 +26,11 @@
     max-width: 1200px;
     margin: auto;
 }
+@media (max-width: 640px) {
+    .container {
+        margin: 0 0.917rem 0 1.333rem!important;
+    }
+}
 .tablead {
     position: absolute;
     top: 5px;
@@ -75,6 +80,16 @@
 }
 .phoneHide {
     display: flex;
+}
+@media (max-width: 1149px) {
+    .phoneHide {
+        display: none;
+        background-color: #fff;
+        box-shadow: 0 8px 24px rgb(81 87 103 / 16%);
+        border: 1px solid #ebebeb;
+        border-radius: 4px;
+        font-size: 1.2rem;
+    }
 }
 .navItem {
     color: #86909c;
@@ -140,6 +155,13 @@
     margin: 0;
     order: 0;
 }
+@media (max-width: 640px) {
+    .rightSideNav {
+        width: 322px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
 
 /*搜索*/
 .searchAdd {
@@ -155,17 +177,28 @@
 }
 @media (max-width: 799px) {
     .searchAdd {
+        margin-left: 0;
         justify-content: flex-start;
-        margin-left: 1rem;
+        width: 270px;
     }
 }
 .searchAddUl {
     display: flex;
     justify-content: flex-start;
 }
+@media screen and (max-width: 640px) {
+    .searchAddUl {
+        width: 20rem!important;
+    }
+}
 .navItem.search {
     cursor: auto;
     padding-left: 0;
+}
+@media (max-width: 640px) {
+    .navItem.search {
+        padding-left: 6.667rem;
+    }
 }
 .searchForm {
     background-color: #fff;
@@ -183,9 +216,10 @@
         width: 360px;
     }
 }
-@media (max-width: 799px) {
+@media (max-width: 640px) {
     .searchForm {
-        width: 200px;
+        height: 32px;
+        transition: width .1s linear 0s;
     }
 }
 .searchForm .searchInput {
@@ -291,6 +325,12 @@
     margin-right: 2rem;
     height: 3rem;
     overflow: hidden;
+}
+@media (max-width: 640px) {
+    .navItem .loginButton {
+        margin-right: 2rem;
+        width: 70px;
+    }
 }
 .loginButtonInner, .loginButtonLine {
     display: inline-block;
