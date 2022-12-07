@@ -137,6 +137,11 @@
     line-height: 1.31;
     color: #252933;
 }
+@media (max-width: 600px) {
+    .articleTitle {
+        font-size: 2rem;
+    }
+}
 .markdownBody {
     word-break: break-word;
     line-height: 2;
@@ -178,6 +183,11 @@
     top: 0;
     right: 0;
     width: 25rem;
+}
+@media (max-width: 1000px) {
+    .sidebar {
+        display: none;
+    }
 }
 .sidebarBlock {
     position: relative;
