@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import {getArticleHottest} from "../../services/request";
 import PropTypes from "prop-types";
 import {LoadingOutlined} from "@ant-design/icons";
+import {formatNumber} from "../../util";
 
 const Sidebar = () => {
   const { hiddenHeader, stickySidebar } = useSelector(state => state.commonSlice)
@@ -73,7 +74,7 @@ const Hottest = (props) => {
                         className={styles.icon}
                         alt={'zqskate'}
                       />
-                      <span className={styles.count}>{item.pageviews}</span>
+                      <span className={styles.count}>{formatNumber(item.pageviews)}</span>
                     </div>
                   </div>
                 </a>

@@ -4,6 +4,8 @@ import Container from "./components/Container";
 import {Route, Routes} from "react-router-dom";
 import ArticleDetail from "./pages/ArticleDetail";
 import CodePen from "./pages/CodePen";
+import 'moment/locale/zh-cn'
+import {FloatButton} from "antd";
 
 const App = () => {
   return (
@@ -20,6 +22,7 @@ const App = () => {
         <Route path={'/post/:id'} element={<ArticleDetail/>} />
         <Route path={'/code'} element={<CodePen />} />
       </Routes>
+      <FloatButton.BackTop />
     </div>
   )
 }

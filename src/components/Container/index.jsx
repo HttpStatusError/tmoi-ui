@@ -8,7 +8,7 @@ import CategoryNav from "../Nav/CategoryNav";
 import TagNav from "../Nav/TagNav";
 import FilterNav from "../Nav/FilterNav";
 import InfiniteScroll from "react-infinite-scroll-component";
-import {FloatButton, List, Typography} from "antd";
+import {List, Typography} from "antd";
 import ArticleCard from "../ArticleCard";
 
 const Container = () => {
@@ -51,17 +51,24 @@ const Container = () => {
   useEffect(() => {
     setData([])
     setHasMore(true)
-    fetchData({ cursor: 1 });
+    getArticleList({ cursor: 1 })
+      .then(resp => {
+        if (resp.status) {
+          setData(resp.data.data);
+          setCursor(resp.data.cursor);
+          setHasMore(resp.data.hasMore);
+        }
+      })
   }, [params, search])
 
   const [cursor, setCursor] = useState(1)
   const [data, setData] = useState([]);
   const [hasMore, setHasMore] = useState(true);
-  const fetchData = (payload) => {
-    const sort = payload?.sort || search.get('sort');
-    const category = payload?.category || params['category'];
-    const tag = payload?.tag || params['tag'];
-    const currCursor = payload?.cursor || cursor;
+  const fetchData = () => {
+    const sort = search.get('sort');
+    const category = params['category'];
+    const tag = params['tag'];
+    const currCursor = cursor;
     getArticleList({ cursor: currCursor, category, tag, sort })
       .then(resp => {
         if (resp.status) {
@@ -111,7 +118,6 @@ const Container = () => {
                     )}
                   />}
               </InfiniteScroll>
-              <FloatButton.BackTop />
             </div>
             <Sidebar/>
           </div>

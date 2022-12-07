@@ -41,7 +41,7 @@
     position: relative;
     margin: 0 auto;
     width: 100%;
-    max-width: 960px;
+    max-width: 1140px;
 }
 
 .ant-skeleton.ant-skeleton-active .ant-skeleton-content .ant-skeleton-title, .ant-skeleton.ant-skeleton-active .ant-skeleton-content .ant-skeleton-paragraph > li {

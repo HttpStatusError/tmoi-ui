@@ -15,3 +15,7 @@ export const getArticleList = (payload) => {
 export const getArticleHottest = () => {
   return axios.get(`/article/hottest`)
 }
+
+export const getArticleById = (id) => {
+  return axios.get(`/article/${id}`)
+}

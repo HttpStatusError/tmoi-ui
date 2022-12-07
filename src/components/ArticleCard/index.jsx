@@ -2,6 +2,8 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import {Skeleton} from "antd";
 import styles from './index.module.css';
+import moment from "moment";
+import {formatNumber} from "../../util";
 
 const Loading = () => {
   return (
@@ -22,7 +24,7 @@ const ArticleCard = (props) => {
       <div className={styles.entry}>
         {props.loading ?
           <Loading /> :
-          <div className={styles.entryLink}>
+          <div className={styles.entryLink} onClick={() => window.open(`/post/${props.data.id}`)}>
             <div className={classnames(styles.contentBox, styles.articleContentBox)}>
               <div className={styles.metaContainer}>
                 <div className={styles.userMessage}>
@@ -31,7 +33,7 @@ const ArticleCard = (props) => {
                   </a>
                 </div>
                 <div className={styles.dividing}/>
-                <div className={styles.date}>时间</div>
+                <div className={styles.date}>{moment(props.data.createTime).fromNow()}</div>
                 <div className={styles.dividing}/>
                 <div className={styles.tagList}>
                   <div className={styles.tag}>
@@ -48,25 +50,25 @@ const ArticleCard = (props) => {
               <div className={styles.contentWrapper}>
                 <div className={styles.contentMain} style={{ overflow: '-webkit-paged-x' }}>
                   <div className={styles.titleRow}>
-                    <a href={'/'} className={styles.title}  target="_blank" rel="noreferrer">
+                    <a href={`/post/${props.data.id}`} className={styles.title}  target="_blank" rel="noreferrer">
                       <div className={styles.textHighlight} dangerouslySetInnerHTML={{ __html: `<div>${props.data.title}</div>` }} />
                     </a>
                   </div>
                   <div className={styles.abstract}>
-                    <a href={'/'} target="_blank" rel="noreferrer">
+                    <a href={`/post/${props.data.id}`} target="_blank" rel="noreferrer">
                       <div dangerouslySetInnerHTML={{ __html: `<div>${props.data.titleDesc}</div>` }} className={styles.textHighlight} />
                     </a>
                   </div>
                   <ul className={classnames(styles.actionList)}>
                     <li className={classnames(styles.item, styles.view)}>
-                      <i/><span>{props.data.read}</span>
+                      <i/><span>{formatNumber(props.data.pageviews)}</span>
                     </li>
                     <li className={classnames(styles.item, styles.like)}>
-                      <i/><span>{props.data.like}</span>
+                      <i/><span>{formatNumber(props.data.likes)}</span>
                     </li>
-                    {/*<li className={classnames(styles.item, styles.comment)}>*/}
-                    {/*  <i/><span>99</span>*/}
-                    {/*</li>*/}
+                    <li className={classnames(styles.item, styles.comment)}>
+                      <i/><span>{formatNumber(0)}</span>
+                    </li>
                   </ul>
                 </div>
                 {props.data.thumbUrl && <img alt={'zqskate'} src={props.data.thumbUrl} className={classnames(styles.lazy, styles.thumb)}/>}
