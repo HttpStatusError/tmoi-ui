@@ -3,6 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 const initialState = {
   hiddenHeader: false,
   stickySidebar: false,
+  articlePageSticky: false,
 }
 
 const commonSlice = createSlice({
@@ -14,13 +15,17 @@ const commonSlice = createSlice({
     },
     changeStickySidebar: (state, action) => {
       state.stickySidebar = action.payload
+    },
+    changeArticlePageSticky: (state, action) => {
+      state.articlePageSticky = action.payload
     }
   }
 })
 
 export const {
   changeHiddenHeader,
-  changeStickySidebar
+  changeStickySidebar,
+  changeArticlePageSticky
 } = commonSlice.actions
 
 export default commonSlice.reducer

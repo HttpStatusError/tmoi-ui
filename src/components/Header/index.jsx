@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import React, {useEffect, useState} from 'react';
 import {NavLink, useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {changeHiddenHeader, changeStickySidebar} from "../../redux/commonSlice";
+import {changeArticlePageSticky, changeHiddenHeader, changeStickySidebar} from "../../redux/commonSlice";
 import {Button} from "antd";
 
 const Logo = () => {
@@ -107,6 +107,12 @@ const Header = () => {
       } else {
         dispatch(changeStickySidebar(false))
       }
+      if (scrollTop > 280) {
+        dispatch(changeArticlePageSticky(true))
+      } else if (scrollTop < 300) {
+        dispatch(changeArticlePageSticky(false))
+      }
+      changeArticlePageSticky(scrollTop > 300)
       if (scrollTop < 100) {
         dispatch(changeHiddenHeader(false))
         return

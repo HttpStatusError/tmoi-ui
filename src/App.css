@@ -44,6 +44,13 @@
     max-width: 1140px;
 }
 
+.ant-anchor-ink {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    height: 0 !important;
+}
+
 .ant-skeleton.ant-skeleton-active .ant-skeleton-content .ant-skeleton-title, .ant-skeleton.ant-skeleton-active .ant-skeleton-content .ant-skeleton-paragraph > li {
     background: linear-gradient(90deg, rgba(190, 190, 190, 0.2) 25%, rgba(129, 129, 129, 0.24) 37%, rgba(190, 190, 190, 0.2) 63%);
     background-size: 400% 100%;

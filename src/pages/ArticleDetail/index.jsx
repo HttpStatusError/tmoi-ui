@@ -11,19 +11,23 @@ import highlight from "@bytemd/plugin-highlight-ssr";
 import mediumZoom from "@bytemd/plugin-medium-zoom";
 import './index.css';
 import ArticleCard from "../../components/ArticleCard";
-import {Skeleton} from "antd";
+import {Anchor, Skeleton} from "antd";
+import {useSelector} from "react-redux";
 
 const plugins = [gfm(), gemoji(), highlight(), mediumZoom()];
 
 const ArticleDetail = () => {
   const {id} = useParams();
   const [data, setData] = useState(null);
+  const [anchors, setAnchors] = useState([]);
+  const { hiddenHeader, articlePageSticky } = useSelector(state => state.commonSlice)
 
   useEffect(() => {
     getArticleById(id)
       .then(resp => {
         if (resp.status) {
           setData(resp.data)
+          updateToc();
         } else {
           if (resp.code === 10) {
             // 404
@@ -32,6 +36,21 @@ const ArticleDetail = () => {
       })
   }, [id])
 
+  const updateToc = () => {
+    setTimeout(() => {
+      const article = document.querySelector(".markdown-body");
+      if (null === article || article.hasAttribute('querySelectorAll')) return;
+      const hs = article.querySelectorAll('h1,h2,h3,h4');
+      const anchor = [];
+      hs.forEach((item, idx) => {
+        const h = item.nodeName.substring(0, 2).toLowerCase();
+        item.id = `Anchor-${h}-${idx}`;
+        anchor.push({id: `Anchor-${h}-${idx}`, text: item.textContent});
+      })
+      setAnchors(anchor)
+    }, 100);
+  }
+  
   return (
     <main className={classnames(styles.mainContainer)}>
       <div className={classnames(styles.view, styles.columnView)}>
@@ -105,8 +124,8 @@ const ArticleDetail = () => {
                 </div> }
             </div>
             {data &&
-              <div className={styles.sidebar}>
-                <div className={classnames(styles.sidebarBlock, styles.authorBlock, styles.pure)}>
+              <div className={classnames(styles.sidebar, { [styles.sticky]: articlePageSticky, [styles.top]: hiddenHeader })}>
+                <div className={classnames(styles.sidebarBlock ,styles.authorBlock, styles.pure)}>
                   <div className={classnames(styles.userItem, styles.item)}>
                     <img alt={'zqskate'} src={data.authorAvatar} className={classnames(styles.lazy, styles.avatar)} />
                     <div className={styles.infoBox}>
@@ -129,6 +148,33 @@ const ArticleDetail = () => {
                     文章被阅读&nbsp;2
                   </span>
                   </div>
+                </div>
+
+                <div className={styles.stickyBlockBox}>
+                  <div className={classnames(styles.sidebarBlock, styles.catalogBlock, styles.pure)}>
+                    <nav className={styles.articleCatalog}>
+                      <div className={styles.catalogTitle}>目录</div>
+                      <div className={styles.catalogBody}>
+                        <Anchor affix={false} showInkInFixed={true}>
+                          {anchors.map((anchor, idx) => {
+                            switch (anchor.id[8]) {
+                              case "1": return  <Anchor.Link key={idx} href={`#${anchor.id}`} onClick={e => e.preventDefault()} title={<span style={{paddingLeft: 0}}><div className={styles.catalogTag}>{anchor.text}</div></span>}/>
+                              case "2": return  <Anchor.Link key={idx} href={`#${anchor.id}`} onClick={e => e.preventDefault()} title={<span style={{paddingLeft: 16}}><div className={styles.catalogTag}>{anchor.text}</div></span>}/>
+                              case "3": return  <Anchor.Link key={idx} href={`#${anchor.id}`} onClick={e => e.preventDefault()} title={<span style={{paddingLeft: 32}}><div className={styles.catalogTag}>{anchor.text}</div></span>}/>
+                              default: return <></>
+                            }
+                          })}
+                        </Anchor>
+                      </div>
+                    </nav>
+                  </div>
+                </div>
+
+                <div className={classnames(styles.sidebarBlock)}>
+
+
+
+
                 </div>
               </div>}
           </>

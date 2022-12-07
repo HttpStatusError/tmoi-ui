@@ -190,6 +190,15 @@
     right: 0;
     width: 25rem;
 }
+.articleSticky.articleTop .stickyBlock {
+    top: 20px;
+}
+.articleSticky .stickyBlock {
+    opacity: 1;
+    top: 80px;
+    z-index: 5;
+    pointer-events: all;
+}
 @media (max-width: 1000px) {
     .sidebar {
         display: none;
@@ -199,6 +208,39 @@
     position: relative;
     margin-bottom: 20px;
     border-radius: 2px;
+}
+.catalogBlock {
+    transition: all .2s linear;
+}
+.articleCatalog {
+    background: #fff;
+    border-radius: 4px;
+    padding: 0;
+}
+.catalogTitle {
+    font-weight: 500;
+    padding: 1.333rem 0;
+    margin: 0 1.667rem;
+    font-size: 16px;
+    line-height: 2rem;
+    color: #1d2129;
+    border-bottom: 1px solid #e4e6eb;
+}
+.catalogBody {
+    padding-bottom: 12px;
+    position: relative;
+    max-height: 460px;
+    margin: 8px 4px 0 0;
+    overflow: auto;
+}
+.catalogTag {
+    color: inherit;
+    display: inline-block;
+    padding: 7px;
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .authorBlock {
     background: #fff;
@@ -386,4 +428,13 @@
     .mainArea {
         width: 100%;
     }
+}
+.sticky .stickyBlockBox {
+    position: fixed;
+    top: 6.766999999999999rem;
+    width: inherit;
+    transition: top .2s;
+}
+.sticky.top .stickyBlockBox {
+    top: 1.675rem;
 }
