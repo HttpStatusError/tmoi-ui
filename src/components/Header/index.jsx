@@ -54,7 +54,7 @@ const Nav = () => {
                 <div className={classnames(styles.searchForm, { [styles.active]: searchInputClick })}>
                   <input
                     type={'text'}
-                    placeholder={'探索稀土掘金'}
+                    placeholder={'探索纯真博物馆'}
                     onBlur={() => setSearchInputClick(false)}
                     onFocus={() => setSearchInputClick(true)}
                     className={classnames(styles.searchInput, { [styles.active]: false })}
