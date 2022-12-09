@@ -13,7 +13,8 @@ import './juejin.css';
 import './high-light.css';
 import ArticleCard from "../../components/ArticleCard";
 import {Anchor, Skeleton} from "antd";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {changeDisableHiddenHeader} from "../../redux/commonSlice";
 
 const plugins = [gfm(), gemoji(), highlight(), mediumZoom()];
 
@@ -21,6 +22,7 @@ const ArticleDetail = () => {
   const {id} = useParams();
   const [data, setData] = useState(null);
   const [anchors, setAnchors] = useState([]);
+  const dispatch = useDispatch();
   const { hiddenHeader, articlePageSticky } = useSelector(state => state.commonSlice)
 
   useEffect(() => {
@@ -156,7 +158,17 @@ const ArticleDetail = () => {
                     <nav className={styles.articleCatalog}>
                       <div className={styles.catalogTitle}>目录</div>
                       <div className={styles.catalogBody}>
-                        <Anchor affix={false} showInkInFixed={true}>
+                        <Anchor
+                          offsetTop={1}
+                          affix={false}
+                          showInkInFixed={true}
+                          onClick={() => {
+                            dispatch(changeDisableHiddenHeader(true))
+                            setTimeout(() => {
+                              dispatch(changeDisableHiddenHeader(false))
+                            }, 100)
+                          }}
+                        >
                           {anchors.map((anchor, idx) => {
                             switch (anchor.id[8]) {
                               case "1": return  <Anchor.Link key={idx} href={`#${anchor.id}`} onClick={e => e.preventDefault()} title={<span style={{paddingLeft: 0}}><div className={styles.catalogTag}>{anchor.text}</div></span>}/>

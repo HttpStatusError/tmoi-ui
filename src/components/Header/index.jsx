@@ -93,33 +93,36 @@ const Nav = () => {
 }
 
 const Header = () => {
-  const { hiddenHeader } = useSelector(state => state.commonSlice);
+  const { hiddenHeader, disableHiddenHeader } = useSelector(state => state.commonSlice);
   const dispatch = useDispatch();
   const [val, setVal] = useState(0);
 
   useEffect(() => {
     function hiddenOrDisplayCategory() {
+      // 不可操作，解决目录点击时header会动来动去
+      if (disableHiddenHeader) {
+        return;
+      }
       let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       let scroll = scrollTop - val;
       setVal(() => scrollTop)
-      if (scrollTop > 1100) {
-        dispatch(changeStickySidebar(true))
-      } else {
-        dispatch(changeStickySidebar(false))
-      }
+      // 首页sidebar滑动到指定高度后显示
+      dispatch(changeStickySidebar(scrollTop > 1100))
+      // 文章页面sidebar吸顶
       if (scrollTop > 280) {
         dispatch(changeArticlePageSticky(true))
       } else if (scrollTop < 300) {
         dispatch(changeArticlePageSticky(false))
       }
-      changeArticlePageSticky(scrollTop > 300)
+      // 到顶时显示header
       if (scrollTop < 100) {
         dispatch(changeHiddenHeader(false))
         return
       }
-      if(scroll > 15) {
+      // 滚动上下时显示/隐藏header
+      if(scroll > 30) {
         dispatch(changeHiddenHeader(true))
-      } else if (scroll < -15) {
+      } else if (scroll < -30) {
         dispatch(changeHiddenHeader(false))
       }
     }
@@ -127,7 +130,7 @@ const Header = () => {
     return () => {
       window.removeEventListener('scroll', hiddenOrDisplayCategory);
     }
-  }, [dispatch, val])
+  }, [disableHiddenHeader, dispatch, val])
 
   return (
     <div className={styles.mainHeaderBox}>
