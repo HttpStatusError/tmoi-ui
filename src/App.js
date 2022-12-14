@@ -10,7 +10,7 @@ import Login from "./components/User/Login";
 
 const App = () => {
   return (
-    <div className={'container'}>'
+    <div className={'container'}>
       <Header/>
       <Routes>
         <Route path={'/'} element={<Container />}>
