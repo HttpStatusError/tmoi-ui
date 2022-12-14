@@ -24,25 +24,23 @@ const ArticleCard = (props) => {
       <div className={styles.entry}>
         {props.loading ?
           <Loading /> :
-          <div className={styles.entryLink} onClick={() => window.open(`/post/${props.data.id}`)}>
+          <a href={`/post/${props.data.id}`} className={styles.entryLink} target={'_blank'} rel="noreferrer">
             <div className={classnames(styles.contentBox, styles.articleContentBox)}>
               <div className={styles.metaContainer}>
                 <div className={styles.userMessage}>
-                  <a href={'/'}>
-                    <div className={styles.userPopoverBox}>{props.data.authorName}</div>
-                  </a>
+                  <div className={styles.userPopoverBox}>{props.data.authorName}</div>
                 </div>
                 <div className={styles.dividing}/>
                 <div className={styles.date}>{moment(props.data.createTime).fromNow()}</div>
                 <div className={styles.dividing}/>
                 <div className={styles.tagList}>
                   <div className={styles.tag}>
-                    <a href={props.data.categoryPath} className={styles.tag}>{props.data.categoryLabel}</a>
+                    <span className={styles.tag}>{props.data.categoryLabel}</span>
                     <i className={styles.point}/>
                   </div>
                   {props.data.tagLabel &&
                     <div className={styles.tag}>
-                      <a href={`${props.data.categoryPath}/${props.data.tagLabel}`} className={styles.tag}>{props.data.tagLabel}</a>
+                      <span className={styles.tag}>{props.data.tagLabel}</span>
                       <i className={styles.point}/>
                     </div>}
                 </div>
@@ -74,7 +72,7 @@ const ArticleCard = (props) => {
                 {props.data.thumbUrl && <img alt={'zqskate'} src={props.data.thumbUrl} className={classnames(styles.lazy, styles.thumb)}/>}
               </div>
             </div>
-          </div>}
+          </a>}
       </div>
     </div>
   )

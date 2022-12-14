@@ -11,7 +11,6 @@ import highlight from "@bytemd/plugin-highlight-ssr";
 import mediumZoom from "@bytemd/plugin-medium-zoom";
 import './juejin.css';
 import './high-light.css';
-import ArticleCard from "../../components/ArticleCard";
 import {Anchor, Skeleton} from "antd";
 import {useDispatch, useSelector} from "react-redux";
 import {changeDisableHiddenHeader} from "../../redux/commonSlice";
@@ -57,141 +56,135 @@ const ArticleDetail = () => {
   return (
     <main className={classnames(styles.mainContainer)}>
       <div className={classnames(styles.view, styles.columnView)}>
-        {
-          <>
-            <div className={classnames(styles.mainAea, styles.articleArea, styles.shadow)}>
-              {data ?
-                <article className={styles.article}>
-                  <meta itemProp={'headline'} content={data?.title} />
-                  <meta itemProp={'keywords'} content={`${data?.categoryLabel}` + data?.tagLabel ? `,${data?.tagLabel}` : ''} />
-                  <meta itemProp={'datePublished'} content={data?.createTime} />
-                  {data?.thumbUrl && <meta itemProp={'image'} content={data.thumbUrl} />}
-                  <h1 className={styles.articleTitle}>
-                    {data?.title || <Skeleton.Button size={"small"} style={{width: '100%', height: '2.5rem', margin: '1.67em 0'}} />}
-                  </h1>
-                  <div className={styles.authorInfoBlock}>
-                    <a href={'/'} className={styles.avatarLink}>
-                      <img alt={'zqskate'} src={data?.authorAvatar} className={classnames(styles.lazy, styles.avatar)}/>
-                    </a>
-                    <div className={styles.authorInfoBox}>
-                      <div className={styles.authorName}>
-                        <span className={classnames(styles.username, styles.ellipsis)}>
-                          <span className={styles.name}>{data?.authorName || <Skeleton.Button className="name" active={true} size={'small'}/>}</span>
-                        </span>
-                      </div>
-                      <div className={styles.metaBox}>
-                        {data ?
+        <div className={classnames(styles.mainAea, styles.articleArea, styles.shadow)}>
+          {/* loading */}
+          {!data && <Skeleton style={{ paddingTop: 24 }}/>}
+          {/* content */}
+          {data &&
+            <article className={styles.article}>
+              <meta itemProp={'headline'} content={data?.title} />
+              <meta itemProp={'keywords'} content={`${data?.categoryLabel}` + data?.tagLabel ? `,${data?.tagLabel}` : ''} />
+              <meta itemProp={'datePublished'} content={data?.createTime} />
+              {data?.thumbUrl && <meta itemProp={'image'} content={data.thumbUrl} />}
+              <h1 className={styles.articleTitle}>
+                {data?.title || <Skeleton.Button size={"small"} style={{width: '100%', height: '2.5rem', margin: '1.67em 0'}} />}
+              </h1>
+              <div className={styles.authorInfoBlock}>
+                <a href={'/'} className={styles.avatarLink}>
+                  <img alt={'zqskate'} src={data?.authorAvatar} className={classnames(styles.lazy, styles.avatar)}/>
+                </a>
+                <div className={styles.authorInfoBox}>
+                  <div className={styles.authorName}>
+                  <span className={classnames(styles.username, styles.ellipsis)}>
+                    <span className={styles.name}>{data?.authorName || <Skeleton.Button className="name" active={true} size={'small'}/>}</span>
+                  </span>
+                  </div>
+                  <div className={styles.metaBox}>
+                    {data ?
+                      <>
+                        <time className={styles.time}>
+                          {moment(data.createTime).format('yyyy年MM月DD日 HH:MM')}
+                        </time>
+                        <span className={styles.dot}>·</span>
+                        <span className={styles.viewsCount}>阅读 {data.pageviews}</span>
+                        {data.updateTime &&
                           <>
-                            <time className={styles.time}>
-                              {moment(data.createTime).format('yyyy年MM月DD日 HH:MM')}
-                            </time>
                             <span className={styles.dot}>·</span>
-                            <span className={styles.viewsCount}>阅读 {data.pageviews}</span>
-                            {data.updateTime &&
-                              <>
-                                <span className={styles.dot}>·</span>
-                                <span>
-                                  <span className={styles.viewsCount}>已编辑</span>
-                                </span>
-                              </>}
-                          </>
-                          : <Skeleton.Button active={true} size={"small"} style={{width: 200}} />}
-                      </div>
-                    </div>
+                            <span>
+                            <span className={styles.viewsCount}>已编辑</span>
+                          </span>
+                          </>}
+                      </>
+                      : <Skeleton.Button active={true} size={"small"} style={{width: 200}} />}
                   </div>
-                  <div>
-                    <div className={styles.markdownBody}>
-                      {data && <Viewer value={data.content} plugins={plugins}/>}
-                    </div>
-                  </div>
-                </article> :
-                <ArticleCard loading={true}/>
-              }
-              {data &&
-                <div className={styles.articleEnd}>
-                  <div className={styles.tagListBox}>
-                    <div className={styles.tagList}>
-                      <div className={styles.tagListTitle}>分类：</div>
-                      <a href={data.categoryPath} className={classnames(styles.item, styles.categoryItem)}>
-                        <div className={styles.tagTitle}>{data.categoryLabel}</div>
-                      </a>
-                    </div>
-                    {data.tagLabel &&
-                      <div className={styles.tagList}>
-                        <div className={styles.tagListTitle}>标签：</div>
-                        <a href={`${data.categoryPath}/${data.tagLabel}`} className={classnames(styles.item, styles.tagItem)}>
-                          <div className={styles.tagTitle}>{data.tagLabel}</div>
-                        </a>
-                      </div>}
-                  </div>
-                </div> }
+                </div>
+              </div>
+              <div>
+                <div className={styles.markdownBody}>
+                  {data && <Viewer value={data.content} plugins={plugins}/>}
+                </div>
+              </div>
+            </article>}
+          {/* tag-list */}
+          {data &&
+            <div className={styles.articleEnd}>
+              <div className={styles.tagListBox}>
+                <div className={styles.tagList}>
+                  <div className={styles.tagListTitle}>分类：</div>
+                  <a href={data.categoryPath} className={classnames(styles.item, styles.categoryItem)}>
+                    <div className={styles.tagTitle}>{data.categoryLabel}</div>
+                  </a>
+                </div>
+                {data.tagLabel &&
+                  <div className={styles.tagList}>
+                    <div className={styles.tagListTitle}>标签：</div>
+                    <a href={`${data.categoryPath}/${data.tagLabel}`} className={classnames(styles.item, styles.tagItem)}>
+                      <div className={styles.tagTitle}>{data.tagLabel}</div>
+                    </a>
+                  </div>}
+              </div>
+            </div>}
+        </div>
+
+        <div className={classnames(styles.sidebar, { [styles.sticky]: articlePageSticky, [styles.top]: hiddenHeader })}>
+          {/* loading */}
+          {!data && <div className={classnames(styles.sidebarBlock ,styles.authorBlock, styles.pure)} style={{ minHeight: 300 }}/>}
+          {data && <div className={classnames(styles.sidebarBlock ,styles.authorBlock, styles.pure)}>
+            <div className={classnames(styles.userItem, styles.item)}>
+              <img alt={'zqskate'} src={data.authorAvatar} className={classnames(styles.lazy, styles.avatar)} />
+              <div className={styles.infoBox}>
+                <a href={'/'} target={"_blank"}  rel="noreferrer" className={styles.username}>
+                  <span className={styles.name}>{data.authorName}</span>
+                </a>
+                <div className={styles.position}>后端开发</div>
+              </div>
             </div>
-            {data &&
-              <div className={classnames(styles.sidebar, { [styles.sticky]: articlePageSticky, [styles.top]: hiddenHeader })}>
-                <div className={classnames(styles.sidebarBlock ,styles.authorBlock, styles.pure)}>
-                  <div className={classnames(styles.userItem, styles.item)}>
-                    <img alt={'zqskate'} src={data.authorAvatar} className={classnames(styles.lazy, styles.avatar)} />
-                    <div className={styles.infoBox}>
-                      <a href={'/'} target={"_blank"}  rel="noreferrer" className={styles.username}>
-                        <span className={styles.name}>{data.authorName}</span>
-                      </a>
-                      <div className={styles.position}>后端开发</div>
-                    </div>
-                  </div>
-                  <div className={styles.cutOff}/>
-                  <div className={classnames(styles.statItem, styles.item)}>
-                    <LikeIcon/>
-                    <span className={styles.content}>
-                    获得点赞&nbsp;2
-                  </span>
-                  </div>
-                  <div className={classnames(styles.statItem, styles.item)}>
-                    <ReadIcon/>
-                    <span className={styles.content}>
-                    文章被阅读&nbsp;2
-                  </span>
-                  </div>
+            <div className={styles.cutOff}/>
+            <div className={classnames(styles.statItem, styles.item)}>
+              <LikeIcon/>
+              <span className={styles.content}>
+              获得点赞&nbsp;2
+            </span>
+            </div>
+            <div className={classnames(styles.statItem, styles.item)}>
+              <ReadIcon/>
+              <span className={styles.content}>
+              文章被阅读&nbsp;2
+            </span>
+            </div>
+          </div>}
+          {data && <div className={styles.stickyBlockBox}>
+            <div className={classnames(styles.sidebarBlock, styles.catalogBlock, styles.pure)}>
+              <nav className={styles.articleCatalog}>
+                <div className={styles.catalogTitle}>目录</div>
+                <div className={styles.catalogBody}>
+                  <Anchor
+                    offsetTop={1}
+                    affix={false}
+                    showInkInFixed={true}
+                    onClick={() => {
+                      dispatch(changeDisableHiddenHeader(true))
+                      setTimeout(() => {
+                        dispatch(changeDisableHiddenHeader(false))
+                      }, 100)
+                    }}
+                  >
+                    {anchors.map((anchor, idx) => {
+                      switch (anchor.id[8]) {
+                        case "1": return  <Anchor.Link key={idx} href={`#${anchor.id}`} onClick={e => e.preventDefault()} title={<span style={{paddingLeft: 0}}><div className={styles.catalogTag}>{anchor.text}</div></span>}/>
+                        case "2": return  <Anchor.Link key={idx} href={`#${anchor.id}`} onClick={e => e.preventDefault()} title={<span style={{paddingLeft: 16}}><div className={styles.catalogTag}>{anchor.text}</div></span>}/>
+                        case "3": return  <Anchor.Link key={idx} href={`#${anchor.id}`} onClick={e => e.preventDefault()} title={<span style={{paddingLeft: 32}}><div className={styles.catalogTag}>{anchor.text}</div></span>}/>
+                        default: return <></>
+                      }
+                    })}
+                  </Anchor>
                 </div>
-
-                <div className={styles.stickyBlockBox}>
-                  <div className={classnames(styles.sidebarBlock, styles.catalogBlock, styles.pure)}>
-                    <nav className={styles.articleCatalog}>
-                      <div className={styles.catalogTitle}>目录</div>
-                      <div className={styles.catalogBody}>
-                        <Anchor
-                          offsetTop={1}
-                          affix={false}
-                          showInkInFixed={true}
-                          onClick={() => {
-                            dispatch(changeDisableHiddenHeader(true))
-                            setTimeout(() => {
-                              dispatch(changeDisableHiddenHeader(false))
-                            }, 100)
-                          }}
-                        >
-                          {anchors.map((anchor, idx) => {
-                            switch (anchor.id[8]) {
-                              case "1": return  <Anchor.Link key={idx} href={`#${anchor.id}`} onClick={e => e.preventDefault()} title={<span style={{paddingLeft: 0}}><div className={styles.catalogTag}>{anchor.text}</div></span>}/>
-                              case "2": return  <Anchor.Link key={idx} href={`#${anchor.id}`} onClick={e => e.preventDefault()} title={<span style={{paddingLeft: 16}}><div className={styles.catalogTag}>{anchor.text}</div></span>}/>
-                              case "3": return  <Anchor.Link key={idx} href={`#${anchor.id}`} onClick={e => e.preventDefault()} title={<span style={{paddingLeft: 32}}><div className={styles.catalogTag}>{anchor.text}</div></span>}/>
-                              default: return <></>
-                            }
-                          })}
-                        </Anchor>
-                      </div>
-                    </nav>
-                  </div>
-                </div>
-
-                <div className={classnames(styles.sidebarBlock)}>
-
-
-
-
-                </div>
-              </div>}
-          </>
-        }
+              </nav>
+            </div>
+          </div>}
+          <div className={classnames(styles.sidebarBlock)}>
+          </div>
+        </div>
       </div>
     </main>
   )

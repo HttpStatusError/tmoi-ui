@@ -67,7 +67,7 @@
     display: none;
     align-items: center;
 }
-.tagList .tag a{
+.tagList .tag span{
     padding: 0 8px;
     flex-shrink: 0;
 }
@@ -171,9 +171,7 @@ i+span {
 /*.action-list>.item.like:hover, .item.comment:hover  {*/
 /*    color: #1890ff;*/
 /*}*/
-.userPopoverBox:hover  {
-    color: #1890ff !important;
-}
+
 .thumb {
     flex: 0 0 auto;
     width: 120px;
