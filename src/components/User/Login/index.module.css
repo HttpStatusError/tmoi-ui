@@ -1,0 +1,45 @@
+.authForm {
+    position: relative;
+    padding: 2rem;
+    width: 26.5rem;
+    max-width: 100%;
+    font-size: 1.167rem;
+    background-color: #fff;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+.closeBtn {
+    float: right;
+    cursor: pointer;
+    opacity: .4;
+}
+
+.closeBtn:before {
+    content: "\f129";
+}
+
+.panel {
+
+}
+
+.title {
+    font-size: 1.5rem;
+    margin: 0 0 2rem;
+}
+
+.btn {
+    width: 100%;
+    height: 3.334rem;
+    color: #fff;
+    background-color: #007fff;
+    border-radius: 2px;
+    outline: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin-top: 5px;
+}
+.agreementBox {
+    margin-top: 1.667rem;
+    color: #767676;
+}

@@ -3,7 +3,12 @@ import classnames from 'classnames';
 import React, {useEffect, useState} from 'react';
 import {NavLink, useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {changeArticlePageSticky, changeHiddenHeader, changeStickySidebar} from "../../redux/commonSlice";
+import {
+  changeArticlePageSticky,
+  changeHiddenHeader,
+  changeShowLogin,
+  changeStickySidebar,
+} from "../../redux/commonSlice";
 import {Button} from "antd";
 
 const Logo = () => {
@@ -24,6 +29,7 @@ const Logo = () => {
 const Nav = () => {
   const location = useLocation();
   const [searchInputClick, setSearchInputClick] = useState(false);
+  const dispatch = useDispatch();
 
   const pathList = ['/code', '/tools']
 
@@ -70,14 +76,14 @@ const Nav = () => {
               </li>
               <li className={classnames(styles.navItem, styles.add, styles.creatorItem)}>
                 <div className={styles.addGroup}>
-                  <Button type={'primary'} className={styles.addBtn}>发表文章</Button>
+                  <Button type={'primary'} className={styles.addBtn} onClick={() => dispatch(changeShowLogin(true))}>发表文章</Button>
                 </div>
               </li>
             </ul>
           </li>
           <li className={classnames(styles.navItem, styles.auth)}>
             <div className={styles.loginButtonWrap}>
-              <Button className={styles.loginButton}>
+              <Button className={styles.loginButton} onClick={() => dispatch(changeShowLogin(true))}>
                 登录
                 <div className={styles.loginButtonInner}>
                   <div className={styles.loginButtonLine}/>

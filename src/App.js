@@ -6,10 +6,11 @@ import ArticleDetail from "./pages/ArticleDetail";
 import CodePen from "./pages/CodePen";
 import 'moment/locale/zh-cn'
 import {FloatButton} from "antd";
+import Login from "./components/User/Login";
 
 const App = () => {
   return (
-    <div className={'container'}>
+    <div className={'container'}>'
       <Header/>
       <Routes>
         <Route path={'/'} element={<Container />}>
@@ -21,6 +22,7 @@ const App = () => {
         <Route path={'/code'} element={<CodePen />} />
       </Routes>
       <FloatButton.BackTop />
+      <Login/>
     </div>
   )
 }

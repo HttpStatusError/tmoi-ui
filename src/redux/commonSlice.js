@@ -5,12 +5,16 @@ const initialState = {
   hiddenHeader: false,
   stickySidebar: false,
   articlePageSticky: false,
+  showLogin: false,
 }
 
 const commonSlice = createSlice({
   name: 'common',
   initialState,
   reducers: {
+    changeShowLogin: (state, action) => {
+      state.showLogin = action.payload
+    },
     changeDisableHiddenHeader: (state, action) => {
       state.disableHiddenHeader = action.payload
     },
@@ -27,6 +31,7 @@ const commonSlice = createSlice({
 })
 
 export const {
+  changeShowLogin,
   changeDisableHiddenHeader,
   changeHiddenHeader,
   changeStickySidebar,
