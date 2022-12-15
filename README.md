@@ -26,7 +26,7 @@
 
 ## 在线预览
 
-点击这里 [在线预览](https://wwww.zqskate.com)
+点击这里 [在线预览](https://www.zqskate.com)
 
 ## 本地运行
 
