@@ -1,17 +1,17 @@
 import styles from './index.module.css';
 import classnames from "classnames";
-import Sidebar from "../Sidebar";
+import Sidebar from "../../components/Sidebar";
 import {useParams, useSearchParams} from 'react-router-dom';
 import {useEffect, useState} from "react";
 import {getArticleList, getCategoryList, getTagListByCategoryId} from "../../services/request";
-import CategoryNav from "../Nav/CategoryNav";
-import TagNav from "../Nav/TagNav";
-import FilterNav from "../Nav/FilterNav";
+import CategoryNav from "../../components/Nav/CategoryNav";
+import TagNav from "../../components/Nav/TagNav";
+import FilterNav from "../../components/Nav/FilterNav";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {List, Typography} from "antd";
-import ArticleCard from "../ArticleCard";
+import ArticleCard from "../../components/ArticleCard";
 
-const Container = () => {
+const MainPage = () => {
   let params = useParams();
   const [search] = useSearchParams();
   const [categoryList, setCategoryList] = useState([])
@@ -130,4 +130,4 @@ const Container = () => {
   )
 }
 
-export default Container;
+export default MainPage;
